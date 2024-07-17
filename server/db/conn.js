@@ -10,3 +10,4 @@ mongoose.connect(db, {
     console.log("Connection Successful to Atlas");
     console.log("========================");
 }).catch((err) => console.log("Connecton Error"));
+ 

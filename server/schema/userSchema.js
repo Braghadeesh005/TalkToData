@@ -59,7 +59,6 @@ const schema = new mongoose.Schema({
     type: {
       type: String,
       enum: ['sql', 'mongo'],
-      required: true
     },
     sqlParams: {
       host: String,

@@ -1,28 +1,20 @@
 import React from 'react'
-import { Center, VStack, Button, useColorModeValue } from '@chakra-ui/react'
-import { FcGoogle } from 'react-icons/fc'
+import './Login.css'
+import pic from './google-icon.png'
 
 const Login = () => {
-  const bgColor = useColorModeValue("gray.100", "gray.700")
-
+  
   const handleGoogleAuthClick = () => {
     window.open(`http://localhost:4000/auth/google/signup/callback`, '_self');
   };
 
   return (
-    <Center h="100vh" w="100vw" bg={bgColor}>
-      <VStack spacing={4}>
-        <Button 
-          leftIcon={<FcGoogle />}
-          colorScheme='blackAlpha' 
-          variant='solid' 
-          onClick={handleGoogleAuthClick} 
-          color="white"
-        >
-          Sign in with Google
-        </Button>
-      </VStack>
-    </Center>
+    <>
+    <h1 className='title'> Talk to Data App</h1>
+      <div className='signup-container'>
+        <button onClick={handleGoogleAuthClick} className='signup-button' > <span>Login / Signup With</span><img src={pic} className='google' alt='google'/></button>
+      </div>
+    </>
   )
 }
 

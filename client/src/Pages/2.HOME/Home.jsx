@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';  // Import the CSS file for card styling
+import './Home.css';  
 
 const Home = () => {
   const [selectedDb, setSelectedDb] = useState(null);
@@ -94,7 +94,7 @@ const Home = () => {
 
     if (connection.host) {
       // MySQL Connection
-      apiEndpoint = 'http://localhost:4000/api/sql-connection';
+      apiEndpoint = 'http://localhost:4000/api/existing-sql-connection';
       data = {
         MYSQL_HOST: connection.host,
         MYSQL_USER: connection.user,
@@ -104,7 +104,7 @@ const Home = () => {
       };
     } else if (connection.connectionString) {
       // MongoDB Connection
-      apiEndpoint = 'http://localhost:4000/api/mongo-connection';
+      apiEndpoint = 'http://localhost:4000/api/existing-mongo-connection';
       data = {
         connectionString: connection.connectionString
       };
@@ -131,8 +131,8 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Select Database</h1>
+    <>
+      <h1>OUR DATABASES</h1>
       <div>
         <button onClick={() => setSelectedDb('mysql')}>MySQL</button>
         <button onClick={() => setSelectedDb('mongodb')}>MongoDB</button>
@@ -214,32 +214,38 @@ const Home = () => {
         </div>
       )}
 
-      <h2>Connections</h2>
-      <div className="card-container">
-        {connections.map((connection, index) => (
-          <div
-            className="card"
-            key={index}
-            onClick={() => handleCardClick(connection)}
-            style={{ cursor: 'pointer' }}
-          >
-            <h3>{connection.host ? 'MySQL' : 'MongoDB'}</h3>
-            {connection.host && (
-              <>
-                <p>Host: {connection.host}</p>
-                <p>User: {connection.user}</p>
-                <p>Password: {connection.password}</p>
-                <p>Database: {connection.database}</p>
-                <p>Port: {connection.port}</p>
-              </>
-            )}
-            {connection.connectionString && (
-              <p>Connection String: {connection.connectionString}</p>
-            )}
-          </div>
-        ))}
+
+
+    <h2> Connection History</h2>
+{connections.length > 0 ? (
+  <div className="card-container">
+    {connections.map((connection, index) => (
+      <div
+        className="card"
+        key={index}
+        onClick={() => handleCardClick(connection)}
+        style={{ cursor: 'pointer' }}
+      >
+        <h3>{connection.host ? 'MySQL' : 'MongoDB'}</h3>
+        {connection.host && (
+          <>
+            <p>Host: {connection.host}</p>
+            <p>User: {connection.user}</p>
+            <p>Password: {connection.password}</p>
+            <p>Database: {connection.database}</p>
+            <p>Port: {connection.port}</p>
+          </>
+        )}
+        {connection.connectionString && (
+          <p>Connection String: {connection.connectionString}</p>
+        )}
       </div>
-    </div>
+    ))}
+  </div>
+) : (
+  <p>No connections made.</p>
+)}
+    </>
   );
 };
 
