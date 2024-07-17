@@ -1,26 +1,23 @@
 import React from 'react'
-import {Routes, Route} from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
+import { Button, useColorMode } from "@chakra-ui/react"
 
-//Pages
+// Pages
 import Login from './Pages/1.LOGIN_SIGNUP/Login'
 import Home from './Pages/2.HOME/Home'
 
-const Routing = () =>
-  {
-    return(
-      <Routes>      
-         <Route path="/" element={<Login/>} /> 
-         <Route path="/home" element={<Home/>} /> 
-      </Routes>
-    ) 
-  }
-
 const App = () => {
- 
+  // const { colorMode, toggleColorMode } = useColorMode()
+  const navigate = useNavigate()
+
   return (
     <>
-      <Routing/>
-    </> 
+      
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </>
   )
 }
 

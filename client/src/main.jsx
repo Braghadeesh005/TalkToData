@@ -1,16 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { BrowserRouter} from "react-router-dom"
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'jquery/dist/jquery.min.js';
-// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { BrowserRouter } from "react-router-dom"
+//import theme from './theme'  // We'll create this file next
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    {/* <ChakraProvider theme={theme}> */}
+      {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    {/* </ChakraProvider> */}
   </React.StrictMode>,
 )
